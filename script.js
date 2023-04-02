@@ -29,21 +29,34 @@ const people = [
 // Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's and return the filtered array
 export function myfilter() {
-
+	let ans=[];
+	for(let i=0;i<inventors.length;i++){
+		if(inventors[i].year>=1500 && inventors[i].year<1600){
+			ans.push(inventors[i]);
+		}
+	}
+	return ans;
 }
 
 // Array.prototype.map()
 // 2. Give us an array of the inventor first and last names (i.e. full name)
 // Ex: For the first inventor the full name will be 'Albert Einstein'
 export function map() {
-
+	let arr=[];
+	for(let i=0;inventors.length;i++){
+		let s=inventors[i].first+" "+inventors[i].last;
+		arr.push(s);
+	}
+	return arr;
 }
 
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest and return the sorted array
 export function sort() {
-
+	inventors.sort(a,b){
+		return b.year-a.year;
+	}
 }
 
 
@@ -51,18 +64,29 @@ export function sort() {
 // 4. How many years did all the inventors live?
 // Return the total number of years all the inventors lived
 export function reduce() {
-
+	let sum=0;
+	for(let i=0;i<inventors;i++){
+		sum+=inventors[i].year;
+	}
+	return sum;
 }
 
 // 5. Sort the inventors by years lived and return the sorted array
 export function sortbylived() {
-
+	let arr=inventors.sort(function(a,b) {
+		return a.year-b.year;
+	})
+	return arr;
 }
 
 // 6. sort Exercise
 // Sort the people alphabetically by last name and return the sorted array
 export function sortByLastName() {
-
+	let arr=inventors.sort(function(a,b) {
+		if(a.last>b.last)return 1;
+		if(a.last<b.last)return -1;
+		return 0;
+	})
 }
 
 // 7. Reduce Exercise
@@ -70,5 +94,14 @@ export function sortByLastName() {
 const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'pogostick'];
 
 export function reducedSum() {
+	let obj={};
+	for(let i=0;i<data.length;i++){
+		if(obj[data[i]]==undefined){
+			obj[data[i]]=1;
+		}else{
+			obj[data[i]]++;
+		}
+    }
+	return obj;
     // Return an object containing transports as key and its number of occurances as the key's value
 }
